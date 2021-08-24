@@ -1,4 +1,24 @@
 import React, { Component } from 'react'
+import { Input,Button } from 'antd';
+import {CameraOutlined,
+        TrademarkOutlined,
+        AppstoreAddOutlined,
+        DesktopOutlined,
+        DatabaseOutlined
+    } from '@ant-design/icons';
+const { Search } = Input;
+
+const suffix = (
+  <CameraOutlined
+    style={{
+      fontSize: 16,
+      color: '#1890ff',
+    }}
+  />
+);
+
+const onSearch = value => console.log(value);
+
 export default class Home extends Component {
     nowMonth (period) {
         period = period.toString();
@@ -27,14 +47,33 @@ export default class Home extends Component {
         return cdate.getDate();
     }
     render() {
-        // console.log(this.nowMonth(202108),'this.nowMonth(202108)')
-        console.log(this.getLastDayOfMonth(2021, 1),'444444444444444')
-        this.nowPro = 202108
-        let currentPeriod = this.nowPro.toString()
-        let currentPeriod2 = this.nowMonth(this.nowPro)
         return (
             <div>
-                <h1>Home 组件</h1>
+                <div style = {{display:'flex'}}>
+                    <div style = {{width:'60%',height:'270px'}}>
+                        <div>常用工具</div>
+                        <Search
+                            placeholder="input search text"
+                            enterButton="Search"
+                            size="large"
+                            suffix={suffix}
+                            onSearch={onSearch}
+                            />
+                        <div>
+                            <span><TrademarkOutlined style={{ color: '#1890ff' }} /> 商标注册</span>
+                            <span><AppstoreAddOutlined style={{ color: '#1890ff' }}/> 商标分类</span>
+                            <span><DesktopOutlined style={{ color: '#1890ff' }}/> 商标大数据</span>
+                            <span><DatabaseOutlined style={{ color: '#1890ff' }}/> 商标业务介绍</span>
+                        </div>
+                    </div>
+                    <div style = {{width:'40%',padding:'20px'}}>
+                        <div>
+                            <div>迪士尼有限公司</div>
+                            <div>企业余额:￥12424</div>
+                            <Button type="primary">立即充值</Button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
